@@ -6,7 +6,15 @@
     <title>Weather Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+    </style>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -58,8 +66,10 @@
 <body>
     <header class="header">
         <div class="flex items-center gap-2">
-            <span class="font-bold text-lg">🌤️ Weather</span>
-            <input type="text" class="form-control w-64" placeholder="Search city...">
+            <form class="searchForm">
+                <span class="font-bold text-lg">🌤️ Weather</span>
+                <input type="text" class="form-control w-full searchInput" placeholder="Hit enter to start search...">
+            </form>
         </div>
         <div class="flex items-center gap-4">
             <button class="btn btn-light">⚙️</button>
@@ -74,10 +84,10 @@
             <div class="row g-4">
                 <div class="col-md-3">
                     <div class="card p-3 text-center">
-                        <h1 class="text-3xl">28.6°C</h1>
-                        <p class="text-gray-500">Clear Sky</p>
-                        <p class="text-sm">Istanbul</p>
-                        <p class="text-sm">28 August Monday</p>
+                        <h1 class="text-3xl" id="temp_c">28.6°C</h1>
+                        <p class="text-gray-500" id="todayConditionText">Clear Sky</p>
+                        <p class="text-sm" id="todayCity">Istanbul</p>
+                        <p class="text-sm" id="todayDate">28 August Monday</p>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -85,37 +95,37 @@
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Wind Speed</p>
-                                <h4>28 km/h</h4>
+                                <h4 id="wind_kph">28 km/h</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Humidity</p>
-                                <h4>48%</h4>
+                                <h4 id="humidity">48%</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Pressure</p>
-                                <h4>1008 hPa</h4>
+                                <h4 id="pressure_mb">1008 hPa</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Visibility</p>
-                                <h4>10 km</h4>
+                                <h4 id="vis_km">10 km</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Sunrise</p>
-                                <h4>06:26</h4>
+                                <h4 id="todaySunrise">06:26</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Sunset</p>
-                                <h4>19:44</h4>
+                                <h4 id="todaySunset">19:44</h4>
                             </div>
                         </div>
                     </div>
@@ -167,5 +177,8 @@
             </div>
         </section>
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>

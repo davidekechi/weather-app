@@ -56,8 +56,23 @@ function searchWeatherData($city, $country) {
 		if (array_key_exists($key, $stored_weather_data) && !empty($stored_weather_data[$key])) {
 			$city_weather_data = $stored_weather_data[$key];
 
-			echo 'printing from file...'. PHP_EOL;
-			print_r($city_weather_data);
+			if (explode(" ", $city_weather_data->current->last_updated)[0] == date("Y-m-d")) {
+				$forecasts = $city_weather_data->forecast->forecastday;
+
+				foreach ($forecasts[0]->hour as $hour) {
+					if ($hour->time == date("Y-m-d h:00")) {
+						
+						// Set the content type to JSON
+						header('Content-Type: application/json');
+
+						// Output JSON data
+						echo json_encode($hour);
+					}
+				}
+			}else{
+				unset($stored_weather_data[$key]);
+				getWeatherData($city, $country);
+			}
 		}else{
 			echo 'printing online...'. PHP_EOL;
 			unset($stored_weather_data[$key]);
