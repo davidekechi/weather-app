@@ -6,6 +6,14 @@
     <title>Weather Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-solid.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-regular.css">
+
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/sharp-light.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style type="text/tailwindcss">
@@ -43,24 +51,6 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
         }
-
-        .section-title {
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .weather-data {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .daily-data {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-        }
     </style>
 </head>
 <body>
@@ -81,51 +71,58 @@
     <main class="container my-4">
         <section>
             <h2 class="section-title">Today Overview</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="card p-3 text-center">
-                        <h1 class="text-3xl" id="temp_c">28.6°C</h1>
-                        <p class="text-gray-500" id="todayConditionText">Clear Sky</p>
-                        <p class="text-sm" id="todayCity">Istanbul</p>
-                        <p class="text-sm" id="todayDate">28 August Monday</p>
+            <div class="mt-12 w-full lg:flex">
+                <div class="w-full lg:w-1/5 mr-2 border-2 border-black rounded-lg bg-white">
+                    <div class="mt-16 w-full px-4">
+                        <div class="border-b-2 border-black w-full pb-8 px-8">
+                            <img src="./assets/images/clear-sky.png">
+
+                            <h4 class="text-3xl font-bold mt-4"><span id="temp_c" class="text-3xl font-semibold">28.6</span>°C</h4>
+                            <p class="text-gray-500 mt-2"><span id="conditionText">Clear</span> Sky</p>
+                        </div>
+
+                        <div class="w-full px-6 mt-2 pb-4">
+                            <p class="my-2"><span id="city" class="text-md font-semibold"><i class="far fa-location-dot text-lg mx-2"></i>Lagos</span></p>
+                            <p class="my-2"><span id="date" class="text-md font-semibold"><i class="far fa-calendar-days text-lg mx-2"></i>Wed, 22 January</span></p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="w-full lg:w-3/5 ml-2">
                     <div class="row g-3">
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Wind Speed</p>
-                                <h4 id="wind_kph">28 km/h</h4>
+                                <h4><span id="wind_kph">28</span> km/h</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Humidity</p>
-                                <h4 id="humidity">48%</h4>
+                                <h4><span id="humidity">48</span>%</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Pressure</p>
-                                <h4 id="pressure_mb">1008 hPa</h4>
+                                <h4><span id="pressure_mb">1008</span> hPa</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Visibility</p>
-                                <h4 id="vis_km">10 km</h4>
+                                <h4><span id="vis_km">10</span> km</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Sunrise</p>
-                                <h4 id="todaySunrise">06:26</h4>
+                                <h4><span id="sunrise">06:26</span></h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <p>Sunset</p>
-                                <h4 id="todaySunset">19:44</h4>
+                                <h4><span id="sunset">19:44</span></h4>
                             </div>
                         </div>
                     </div>
@@ -144,34 +141,27 @@
                         <button class="btn btn-outline-secondary">30 Aug Wed</button>
                     </div>
                 </div>
-                <div class="weather-data p-3">
-                    <div class="card daily-data">
+                <div class="weather-data p-3 w-full flex">
+                    <div class="card daily-data w-1/3 h-32 p-4">
                         <div>
                             <p class="mb-0">28 Aug Mon</p>
                             <p class="text-gray-500">18:00</p>
                         </div>
                         <h5>28.6°C</h5>
                     </div>
-                    <div class="card daily-data">
+                    <div class="card daily-data w-1/3 h-32 p-4">
                         <div>
                             <p class="mb-0">28 Aug Mon</p>
                             <p class="text-gray-500">21:00</p>
                         </div>
                         <h5>27.3°C</h5>
                     </div>
-                    <div class="card daily-data">
+                    <div class="card daily-data w-1/3 h-32 p-4">
                         <div>
                             <p class="mb-0">29 Aug Tue</p>
                             <p class="text-gray-500">00:00</p>
                         </div>
                         <h5>25.5°C</h5>
-                    </div>
-                    <div class="card daily-data">
-                        <div>
-                            <p class="mb-0">29 Aug Tue</p>
-                            <p class="text-gray-500">03:00</p>
-                        </div>
-                        <h5>23.3°C</h5>
                     </div>
                 </div>
             </div>
@@ -179,6 +169,6 @@
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>

@@ -10,10 +10,10 @@ class WeatherDataController extends WeatherData
 
 	public function searchWeatherData($request)
 	{
-		$city = "Lagos";
+		$city = "Abuja";
 		$country = "Nigeria";
 
-		if ($request['q'] && $request['q'] != null) {
+		if (isset($request['q']) && $request['q'] != null) {
 			$city = trim(explode(",", $request['q'])[0]);
 			$country = trim(explode(",", $request['q'])[1]);
 		}
@@ -28,17 +28,19 @@ class WeatherDataController extends WeatherData
 				$city_weather_data = $stored_weather_data[$key];
 
 				if (explode(" ", $city_weather_data->current->last_updated)[0] == date("Y-m-d")) {
-					$forecasts = $city_weather_data->forecast->forecastday;
+					$forecasts = $city_weather_data->forecast->forecastday[0];
 
-					foreach ($forecasts[0]->hour as $hour) {
+					foreach ($forecasts->hour as $hour) {
 						if ($hour->time == date("Y-m-d h:00")) {
 							
 							// Set the content type to JSON
 							// header('Content-Type: application/json');
-
-							echo 'from file...<hr/>';
+							$weather_data = [
+								'astro' => $forecasts->astro,
+								'attributes' => $hour
+							];
 							// Output JSON data
-							echo json_encode($hour);
+							echo json_encode($weather_data);
 						}
 					}
 				}else{
